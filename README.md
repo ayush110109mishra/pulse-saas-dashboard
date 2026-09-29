@@ -33,54 +33,7 @@ Built with clean architectural boundaries, Pulse separates presentation from dat
 
 ---
 
-## 📁 Project Structure
-
-```text
-pulse/
-├── index.html
-├── package.json
-├── vite.config.js
-├── .gitignore
-├── README.md
-└── src/
-    ├── main.jsx                        # React root entry point
-    ├── App.jsx                         # App routes & layout shell configuration
-    ├── components/
-    │   ├── layout/
-    │   │   ├── AppLayout.jsx           # Master responsive layout shell
-    │   │   ├── Sidebar.jsx             # Navigation sidebar with active state & branding
-    │   │   └── Navbar.jsx              # Header with dynamic page title, search & profile
-    │   └── ui/
-    │       ├── index.js                # UI component barrel export
-    │       ├── Button.jsx              # Button (primary, secondary, outline, ghost, danger)
-    │       ├── Card.jsx                # Card compound family (Header, Title, Content, Footer)
-    │       ├── Badge.jsx               # Status indicators (success, danger, warning, neutral)
-    │       ├── Input.jsx               # Accessible input with icon slots and shortcut hints
-    │       ├── Select.jsx              # Form select dropdown
-    │       ├── Avatar.jsx              # Avatar with monogram fallback & status indicator
-    │       ├── IconButton.jsx          # Accessible icon button with notification badge dot
-    │       ├── PageHeader.jsx          # Standardized header (title, description, actions)
-    │       ├── Skeleton.jsx            # Shimmer skeleton loader
-    │       └── KpiCard.jsx             # Reusable KPI card with trend indicators
-    ├── pages/
-    │   ├── DashboardPage.jsx           # Overview page with 4 KPI cards & activity feed
-    │   ├── AnalyticsPage.jsx           # Phase 02 placeholder route
-    │   ├── UsersPage.jsx               # Phase 03 placeholder route with skeleton roster
-    │   ├── SettingsPage.jsx            # Phase 04 placeholder route with preference tabs
-    │   └── NotFoundPage.jsx            # 404 handler with return home action
-    ├── data/
-    │   ├── mockMetrics.js              # Decoupled metrics & activity data layer
-    │   └── mockUser.js                 # Current user & workspace organization data
-    ├── utils/
-    │   └── formatters.js               # Currency, number, and percentage helpers
-    └── styles/
-        ├── variables.css               # Design tokens (colors, typography, spacing, radii)
-        ├── index.css                   # Global reset, typography, and focus rings
-        ├── layout.css                  # Shell, sidebar, navbar, and mobile drawer styles
-        └── components.css              # Component styling and states
-```
-
----
+ 
 
 ## ⚡ Getting Started
 
