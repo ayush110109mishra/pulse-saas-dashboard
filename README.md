@@ -189,38 +189,7 @@ dist/assets/charts.js          399.43 kB │ gzip: 115.14 kB
    ```
 
 ---
-
-## 🌐 Production Deployment
-
-Pulse is configured for static hosting with single-page application (SPA) routing:
-
-### Deploy to Vercel
-1. Push your changes to GitHub.
-2. Import the repository in [Vercel](https://vercel.com).
-3. The build settings are auto-detected (`npm run build`, output directory `dist`).
-4. `vercel.json` automatically handles routing all deep paths (`/analytics`, `/users`, `/settings`) to `index.html`.
-
-### Deploy to Netlify
-1. Connect the repository in [Netlify](https://netlify.com).
-2. Set build command to `npm run build` and publish directory to `dist`.
-3. `public/_redirects` ensures all requests redirect to `index.html` with a `200` status.
-
----
-
-## 📋 Manual QA Checklist
-
-Before deploying or presenting, verify the following core user journeys:
-
-- [x] **Navigation:** Route seamlessly between `/`, `/analytics`, `/users`, and `/settings` without page reloads.
-- [x] **Date Filter:** Switch between 7d, 30d, 90d, and YTD on Dashboard and Analytics; observe chart and KPI updates.
-- [x] **User Management:** Filter users by role and status, perform live text search, sort columns, switch pagination pages, and click a user row to open the details drawer.
-- [x] **Team Member Invite:** Click "Invite User", complete the form, submit, and confirm the new user appears in the table.
-- [x] **Notifications:** Open popover via bell icon, click a notification to mark it read, or click "Mark all read" to clear unread badge.
-- [x] **Theme Switcher:** In Settings > Appearance, toggle between Light and Dark mode; confirm styles apply instantly and persist upon browser reload.
-- [x] **Compact Mode:** Toggle Table Density between Standard and Compact; observe row padding changes in `/users`.
-- [x] **Responsive Drawer:** Shrink browser width below 768px; toggle hamburger menu to access sidebar drawer.
-
----
+ 
 
 ## 👤 Author
 
