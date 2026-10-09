@@ -260,7 +260,7 @@ export function getDashboardRevenueSeries(range = '30d') {
 export const mockRecentActivity = [
   {
     id: 'act-1',
-    user: 'Smriti Shukla',
+    user: 'Riya Shukla',
     action: 'upgraded to Enterprise Tier',
     time: '12 minutes ago',
     amount: '+₹48,000',
