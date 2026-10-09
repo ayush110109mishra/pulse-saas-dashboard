@@ -20,8 +20,8 @@ export const mockUsers = [
   },
   {
     id: 'usr-002',
-    name: 'Priya Verma',
-    email: 'priya.verma@example.com',
+    name: 'Smriti Shukla',
+    email: 'smriti.shukla@example.com',
     role: 'Admin',
     status: 'Active',
     joinedAt: '04 Feb 2025',
