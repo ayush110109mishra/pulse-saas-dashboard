@@ -37,11 +37,11 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   // Range-responsive data
-  const kpiMetrics = getDashboardKpiMetrics(selectedRange);
-  const revenueSeries = getDashboardRevenueSeries(selectedRange);
+  const kpiMetrics = getDashboardKpiMetrics(selectedRange) || [];
+  const revenueSeries = getDashboardRevenueSeries(selectedRange) || [];
 
   // Compute total revenue for the current view
-  const periodTotalRevenue = revenueSeries.reduce((acc, curr) => acc + curr.revenue, 0);
+  const periodTotalRevenue = revenueSeries.reduce((acc, curr) => acc + (curr?.revenue || 0), 0);
 
   // Range display labels
   const rangeLabels = {
@@ -251,7 +251,7 @@ export default function DashboardPage() {
               </div>
             ) : (
               <ul style={{ listStyle: 'none' }}>
-                {mockRecentActivity.map((activity, idx) => (
+                {(mockRecentActivity || []).map((activity, idx) => (
                   <li
                     key={activity.id}
                     style={{
@@ -260,7 +260,7 @@ export default function DashboardPage() {
                       justifyContent: 'space-between',
                       padding: 'var(--space-3-5, 14px) 0',
                       borderBottom:
-                        idx !== mockRecentActivity.length - 1
+                        idx !== (mockRecentActivity || []).length - 1
                           ? '1px solid var(--border-subtle)'
                           : 'none'
                     }}

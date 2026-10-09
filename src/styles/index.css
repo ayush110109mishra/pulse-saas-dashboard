@@ -23,6 +23,7 @@ body {
   line-height: var(--leading-normal);
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 /* Typography Defaults */
@@ -54,7 +55,7 @@ input, select, textarea {
   font-size: inherit;
 }
 
-/* Focus styles for accessibility */
+/* Focus styles for accessibility (WCAG 2.1 AA) */
 :focus-visible {
   outline: 2px solid var(--border-focus);
   outline-offset: 2px;
@@ -77,4 +78,16 @@ input, select, textarea {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
+}
+
+/* Accessibility: Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

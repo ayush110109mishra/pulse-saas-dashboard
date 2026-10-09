@@ -39,11 +39,11 @@ export default function AnalyticsPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   // Range-responsive datasets
-  const kpis = getAnalyticsKpis(selectedRange);
-  const financialData = getFinancialTrends(selectedRange);
-  const userGrowthData = getUserGrowthSeries(selectedRange);
-  const funnelData = getConversionFunnel(selectedRange);
-  const channelData = getAcquisitionChannels(selectedRange);
+  const kpis = getAnalyticsKpis(selectedRange) || [];
+  const financialData = getFinancialTrends(selectedRange) || [];
+  const userGrowthData = getUserGrowthSeries(selectedRange) || [];
+  const funnelData = getConversionFunnel(selectedRange) || [];
+  const channelData = getAcquisitionChannels(selectedRange) || [];
 
   const rangeLabels = {
     '7d': 'Last 7 Days',
@@ -310,7 +310,7 @@ export default function AnalyticsPage() {
               </CardDescription>
             </div>
             <span className="chart-metric-badge">
-              {funnelData[funnelData.length - 1].percentage}% End Conversion
+              {funnelData.length > 0 ? funnelData[funnelData.length - 1]?.percentage : 0}% End Conversion
             </span>
           </CardHeader>
           <CardContent>

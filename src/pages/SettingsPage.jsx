@@ -64,6 +64,28 @@ export default function SettingsPage() {
 
   const [feedbackMsg, setFeedbackMsg] = useState('');
 
+  // Apply theme and density preferences directly to documentElement
+  useEffect(() => {
+    if (settings.theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else if (settings.theme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (isDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+    }
+
+    if (settings.compactTables) {
+      document.documentElement.setAttribute('data-density', 'compact');
+    } else {
+      document.documentElement.removeAttribute('data-density');
+    }
+  }, [settings.theme, settings.compactTables]);
+
   const tabs = [
     { id: 'general', label: 'General', icon: Sliders },
     { id: 'appearance', label: 'Appearance', icon: Palette },
@@ -93,6 +115,8 @@ export default function SettingsPage() {
     if (window.confirm('Reset all preferences back to default settings?')) {
       setSettings(defaultSettings);
       localStorage.removeItem(STORAGE_KEY);
+      document.documentElement.removeAttribute('data-theme');
+      document.documentElement.removeAttribute('data-density');
       setFeedbackMsg('Preferences reset to default values.');
       setTimeout(() => setFeedbackMsg(''), 4000);
     }

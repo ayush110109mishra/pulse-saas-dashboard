@@ -16,18 +16,26 @@ export default function NotificationPopover({ isOpen, onClose }) {
   const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications();
   const popoverRef = useRef(null);
 
-  // Click outside listener
+  // Click outside and Escape key listener
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (popoverRef.current && !popoverRef.current.contains(e.target)) {
         onClose();
       }
     };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
     }
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose]);
 
@@ -75,6 +83,12 @@ export default function NotificationPopover({ isOpen, onClose }) {
                 key={notif.id}
                 className={`notif-item ${!notif.isRead ? 'unread' : ''}`}
                 onClick={() => markAsRead(notif.id)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    markAsRead(notif.id);
+                  }
+                }}
                 role="button"
                 tabIndex={0}
               >

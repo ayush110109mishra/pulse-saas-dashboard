@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   Menu,
@@ -21,15 +21,30 @@ const routeTitles = {
 };
 
 /**
- * Top Navbar component with live notification center
+ * Top Navbar component with live notification center and keyboard shortcuts
  */
 export default function Navbar({ onToggleMobileMenu }) {
   const location = useLocation();
   const currentTitle = routeTitles[location.pathname] || 'Pulse';
   const [searchQuery, setSearchQuery] = useState('');
   const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const searchInputRef = useRef(null);
 
   const { unreadCount } = useNotifications();
+
+  // Global Cmd+K / Ctrl+K keyboard shortcut to focus search
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (searchInputRef.current) {
+          searchInputRef.current.focus();
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <header className="app-navbar" role="banner">
@@ -50,12 +65,13 @@ export default function Navbar({ onToggleMobileMenu }) {
       {/* Center: Search UI / Trigger */}
       <div className="navbar-search-wrapper">
         <Input
+          ref={searchInputRef}
           leftIcon={<Search size={16} />}
           shortcut="⌘K"
           placeholder="Search metrics, users..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          aria-label="Search dashboard"
+          aria-label="Search dashboard (Press Command K to focus)"
         />
       </div>
 
@@ -86,6 +102,12 @@ export default function Navbar({ onToggleMobileMenu }) {
           role="button"
           aria-label={`User profile: ${currentUser.name}`}
           aria-haspopup="menu"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              alert(`Logged in as ${currentUser.name} (${currentUser.role})`);
+            }
+          }}
         >
           <Avatar
             src={currentUser.avatarUrl}

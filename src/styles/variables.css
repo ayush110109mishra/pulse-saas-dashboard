@@ -8,10 +8,10 @@
   --bg-sidebar-hover: #1e293b;
   --bg-sidebar-active: #2563eb;
 
-  /* Text Colors */
+  /* Text Colors - WCAG AA Contrast Compliant */
   --text-primary: #0f172a;
   --text-secondary: #475569;
-  --text-muted: #94a3b8;
+  --text-muted: #64748b; /* Enhanced from #94a3b8 for 4.6:1 contrast ratio */
   --text-on-accent: #ffffff;
   --text-sidebar: #94a3b8;
   --text-sidebar-hover: #f8fafc;
@@ -21,7 +21,7 @@
   --border-subtle: #f1f5f9;
   --border-default: #e2e8f0;
   --border-strong: #cbd5e1;
-  --border-focus: #3b82f6;
+  --border-focus: #2563eb;
   --border-sidebar: #1e293b;
 
   /* Brand / Primary Accent (Deep Indigo & Modern Pulse Blue) */
@@ -119,4 +119,48 @@
   --z-overlay: 30;
   --z-navbar: 20;
   --z-dropdown: 50;
+}
+
+/* ==========================================================================
+   Dark Theme Overrides (Live Swappable via Settings)
+   ========================================================================== */
+:root[data-theme="dark"] {
+  --bg-app: #090d16;
+  --bg-surface: #0f172a;
+  --bg-surface-hover: #1e293b;
+  --bg-subtle: #141e33;
+  --bg-sidebar: #060911;
+  --bg-sidebar-hover: #162032;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --border-subtle: #1e293b;
+  --border-default: #253349;
+  --border-strong: #3b4e6b;
+  --border-sidebar: #1e293b;
+
+  --neutral-badge-bg: #1e293b;
+  --neutral-badge-text: #cbd5e1;
+
+  --primary-50: #172554;
+  --primary-100: #1e3a8a;
+  --primary-glow: rgba(59, 130, 246, 0.25);
+
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 8px -1px rgba(0, 0, 0, 0.5);
+  --shadow-dropdown: 0 12px 28px -4px rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================================================
+   Compact Density Mode (Live Swappable via Settings)
+   ========================================================================== */
+:root[data-density="compact"] .data-table td {
+  padding: 8px 16px;
+}
+
+:root[data-density="compact"] .data-table th {
+  padding: 8px 16px;
 }
