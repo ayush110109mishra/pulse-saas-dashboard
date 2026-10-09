@@ -1,12 +1,13 @@
 /**
  * Mock notifications data for Pulse navbar notification center.
+ * Localized for Aster Technologies and Indian business context.
  */
 
 export const initialNotifications = [
   {
     id: 'notif-1',
     title: 'Enterprise Plan Activated',
-    description: 'Acme Technologies has been upgraded to Growth Tier with 50 seats.',
+    description: 'Aster Technologies has been upgraded to Growth Tier with 50 seats.',
     timestamp: '2026-10-09T18:30:00Z',
     timeAgo: '15m ago',
     isRead: false,
@@ -24,7 +25,7 @@ export const initialNotifications = [
   {
     id: 'notif-3',
     title: 'New Member Joined',
-    description: 'Sophia Patel accepted the invitation to join the Engineering workspace.',
+    description: 'Neha Gupta accepted the invitation to join the Engineering workspace.',
     timestamp: '2026-10-09T15:00:00Z',
     timeAgo: '3h ago',
     isRead: false,
@@ -51,7 +52,7 @@ export const initialNotifications = [
   {
     id: 'notif-6',
     title: 'Billing Invoice Paid',
-    description: 'Payment of $1,200.00 processed successfully for Annual Team Plan.',
+    description: 'Payment of ₹1,20,000 processed successfully for Annual Team Plan.',
     timestamp: '2026-10-05T11:00:00Z',
     timeAgo: '4d ago',
     isRead: true,

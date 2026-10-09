@@ -1,5 +1,5 @@
-import React from 'react';
 import {
+  IndianRupee,
   DollarSign,
   Users,
   ShoppingCart,
@@ -13,10 +13,12 @@ import Badge from './Badge';
 import Skeleton from './Skeleton';
 
 const ICON_MAP = {
-  DollarSign: DollarSign,
+  IndianRupee: IndianRupee,
+  DollarSign: IndianRupee,
   Users: Users,
   ShoppingCart: ShoppingCart,
-  Activity: Activity
+  Activity: Activity,
+  TrendingUp: TrendingUp
 };
 
 /**

@@ -585,7 +585,7 @@ export default function UsersPage() {
           <div className="form-row">
             <label className="form-label">Full Name</label>
             <Input
-              placeholder="e.g. Jordan Lee"
+              placeholder="e.g. Rohit Deshmukh"
               value={inviteForm.name}
               onChange={(e) => setInviteForm((prev) => ({ ...prev, name: e.target.value }))}
               required
@@ -596,7 +596,7 @@ export default function UsersPage() {
             <label className="form-label">Email Address</label>
             <Input
               type="email"
-              placeholder="jordan.lee@company.com"
+              placeholder="rohit.deshmukh@example.com"
               value={inviteForm.email}
               onChange={(e) => setInviteForm((prev) => ({ ...prev, email: e.target.value }))}
               required

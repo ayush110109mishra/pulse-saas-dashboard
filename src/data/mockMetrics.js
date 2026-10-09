@@ -15,13 +15,13 @@ export const dashboardKpiMetricsByRange = {
     {
       id: 'total-revenue',
       title: 'Total Revenue',
-      value: '$19,450',
+      value: '₹19,450',
       numericValue: 19450,
       change: '+14.2%',
       changeValue: 14.2,
       trend: 'up',
       context: 'vs previous 7 days',
-      iconName: 'DollarSign'
+      iconName: 'IndianRupee'
     },
     {
       id: 'active-users',
@@ -61,13 +61,13 @@ export const dashboardKpiMetricsByRange = {
     {
       id: 'total-revenue',
       title: 'Total Revenue',
-      value: '$84,250',
+      value: '₹84,250',
       numericValue: 84250,
       change: '+12.5%',
       changeValue: 12.5,
       trend: 'up',
       context: 'vs previous 30 days',
-      iconName: 'DollarSign'
+      iconName: 'IndianRupee'
     },
     {
       id: 'active-users',
@@ -107,13 +107,13 @@ export const dashboardKpiMetricsByRange = {
     {
       id: 'total-revenue',
       title: 'Total Revenue',
-      value: '$248,600',
+      value: '₹248,600',
       numericValue: 248600,
       change: '+18.4%',
       changeValue: 18.4,
       trend: 'up',
       context: 'vs previous 90 days',
-      iconName: 'DollarSign'
+      iconName: 'IndianRupee'
     },
     {
       id: 'active-users',
@@ -153,13 +153,13 @@ export const dashboardKpiMetricsByRange = {
     {
       id: 'total-revenue',
       title: 'Total Revenue',
-      value: '$682,000',
+      value: '₹682,000',
       numericValue: 682000,
       change: '+22.1%',
       changeValue: 22.1,
       trend: 'up',
       context: 'vs previous year',
-      iconName: 'DollarSign'
+      iconName: 'IndianRupee'
     },
     {
       id: 'active-users',
@@ -260,15 +260,15 @@ export function getDashboardRevenueSeries(range = '30d') {
 export const mockRecentActivity = [
   {
     id: 'act-1',
-    user: 'Sarah Jenkins',
+    user: 'Priya Verma',
     action: 'upgraded to Enterprise Tier',
     time: '12 minutes ago',
-    amount: '+$480.00',
+    amount: '+₹48,000',
     avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80'
   },
   {
     id: 'act-2',
-    user: 'Michael Chen',
+    user: 'Rahul Mehta',
     action: 'created new project workspace',
     time: '45 minutes ago',
     amount: null,
@@ -276,15 +276,15 @@ export const mockRecentActivity = [
   },
   {
     id: 'act-3',
-    user: 'Elena Rostova',
+    user: 'Ananya Singh',
     action: 'purchased Annual Team Plan',
     time: '2 hours ago',
-    amount: '+$1,200.00',
+    amount: '+₹1,20,000',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80'
   },
   {
     id: 'act-4',
-    user: 'David Kim',
+    user: 'Arjun Patel',
     action: 'invited 4 team members',
     time: '3 hours ago',
     amount: null,

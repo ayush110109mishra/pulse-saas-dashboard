@@ -26,14 +26,14 @@ import {
   Select
 } from '../components/ui';
 
-const STORAGE_KEY = 'pulse_dashboard_settings_v3';
+const STORAGE_KEY = 'pulse_dashboard_settings_v4';
 
 const defaultSettings = {
   // General
-  workspaceName: 'Acme Technologies',
-  workspaceSlug: 'acme-tech',
-  timezone: 'America/New_York',
-  currency: 'USD',
+  workspaceName: 'Aster Technologies',
+  workspaceSlug: 'aster-tech',
+  timezone: 'Asia/Kolkata',
+  currency: 'INR',
   companySize: '11-50',
 
   // Appearance
@@ -49,9 +49,9 @@ const defaultSettings = {
   billingInvoices: true,
 
   // Account
-  displayName: 'Alex Rivera',
-  publicEmail: 'alex.rivera@pulse.io',
-  jobTitle: 'Product Lead',
+  displayName: 'Aarav Sharma',
+  publicEmail: 'aarav.sharma@example.com',
+  jobTitle: 'Product Manager',
   bio: 'Leading product analytics and growth operations across web & mobile platforms.'
 };
 
@@ -248,6 +248,7 @@ export default function SettingsPage() {
                   <label className="form-label">Reporting Currency</label>
                   <Select
                     options={[
+                      { value: 'INR', label: 'INR (₹) — Indian Rupee' },
                       { value: 'USD', label: 'USD ($) — US Dollar' },
                       { value: 'EUR', label: 'EUR (€) — Euro' },
                       { value: 'GBP', label: 'GBP (£) — British Pound' },

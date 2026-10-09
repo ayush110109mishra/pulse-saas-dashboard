@@ -182,7 +182,7 @@ export default function AnalyticsPage() {
                       axisLine={false}
                       tickLine={false}
                       tick={{ fill: 'var(--text-muted)', fontSize: 12 }}
-                      tickFormatter={(val) => (val >= 1000 ? `$${val / 1000}k` : `$${val}`)}
+                      tickFormatter={(val) => (val >= 1000 ? `₹${val / 1000}k` : `₹${val}`)}
                     />
                     <Tooltip content={<ChartTooltip isCurrency={true} />} />
                     <Bar dataKey="revenue" name="Revenue" fill="#2563eb" radius={[4, 4, 0, 0]} />

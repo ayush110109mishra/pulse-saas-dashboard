@@ -8,7 +8,7 @@ export const analyticsKpisByRange = {
     {
       id: 'net-mrr',
       title: 'Net MRR Added',
-      value: '+$4,120',
+      value: '+₹4,120',
       change: '+16.8%',
       trend: 'up',
       context: 'vs previous 7 days',
@@ -17,16 +17,16 @@ export const analyticsKpisByRange = {
     {
       id: 'avg-order-value',
       title: 'Avg Order Value (AOV)',
-      value: '$218',
+      value: '₹218',
       change: '+3.4%',
       trend: 'up',
       context: 'vs previous 7 days',
-      iconName: 'DollarSign'
+      iconName: 'IndianRupee'
     },
     {
       id: 'cac',
       title: 'Customer Acq. Cost',
-      value: '$42',
+      value: '₹42',
       change: '-5.2%',
       trend: 'up', // lower CAC is good
       context: 'vs previous 7 days',
@@ -46,7 +46,7 @@ export const analyticsKpisByRange = {
     {
       id: 'net-mrr',
       title: 'Net MRR Added',
-      value: '+$14,850',
+      value: '+₹14,850',
       change: '+11.2%',
       trend: 'up',
       context: 'vs previous 30 days',
@@ -55,16 +55,16 @@ export const analyticsKpisByRange = {
     {
       id: 'avg-order-value',
       title: 'Avg Order Value (AOV)',
-      value: '$224',
+      value: '₹224',
       change: '+5.8%',
       trend: 'up',
       context: 'vs previous 30 days',
-      iconName: 'DollarSign'
+      iconName: 'IndianRupee'
     },
     {
       id: 'cac',
       title: 'Customer Acq. Cost',
-      value: '$48',
+      value: '₹48',
       change: '-2.1%',
       trend: 'up',
       context: 'vs previous 30 days',
@@ -84,7 +84,7 @@ export const analyticsKpisByRange = {
     {
       id: 'net-mrr',
       title: 'Net MRR Added',
-      value: '+$48,200',
+      value: '+₹48,200',
       change: '+15.4%',
       trend: 'up',
       context: 'vs previous 90 days',
@@ -93,16 +93,16 @@ export const analyticsKpisByRange = {
     {
       id: 'avg-order-value',
       title: 'Avg Order Value (AOV)',
-      value: '$231',
+      value: '₹231',
       change: '+7.2%',
       trend: 'up',
       context: 'vs previous 90 days',
-      iconName: 'DollarSign'
+      iconName: 'IndianRupee'
     },
     {
       id: 'cac',
       title: 'Customer Acq. Cost',
-      value: '$51',
+      value: '₹51',
       change: '-1.4%',
       trend: 'up',
       context: 'vs previous 90 days',
@@ -122,7 +122,7 @@ export const analyticsKpisByRange = {
     {
       id: 'net-mrr',
       title: 'Net MRR Added',
-      value: '+$132,000',
+      value: '+₹132,000',
       change: '+24.5%',
       trend: 'up',
       context: 'vs previous year',
@@ -131,16 +131,16 @@ export const analyticsKpisByRange = {
     {
       id: 'avg-order-value',
       title: 'Avg Order Value (AOV)',
-      value: '$238',
+      value: '₹238',
       change: '+9.4%',
       trend: 'up',
       context: 'vs previous year',
-      iconName: 'DollarSign'
+      iconName: 'IndianRupee'
     },
     {
       id: 'cac',
       title: 'Customer Acq. Cost',
-      value: '$46',
+      value: '₹46',
       change: '-8.3%',
       trend: 'up',
       context: 'vs previous year',

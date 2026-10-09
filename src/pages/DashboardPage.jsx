@@ -192,7 +192,7 @@ export default function DashboardPage() {
                       axisLine={false}
                       tickLine={false}
                       tick={{ fill: 'var(--text-muted)', fontSize: 12 }}
-                      tickFormatter={(val) => (val >= 1000 ? `$${val / 1000}k` : `$${val}`)}
+                      tickFormatter={(val) => (val >= 1000 ? `₹${val / 1000}k` : `₹${val}`)}
                     />
                     <Tooltip content={<ChartTooltip isCurrency={true} />} />
                     <Area
