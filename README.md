@@ -29,6 +29,7 @@ Built with clean architectural boundaries, Pulse separates presentation from dat
 - **Build Tool:** Vite
 - **Routing:** React Router DOM (v6)
 - **Icons:** Lucide React (`lucide-react`)
+- **Charts:** Recharts (`recharts` v2)
 - **Styling:** CSS3 Custom Properties (Design System tokens)
 
 ---
@@ -88,7 +89,7 @@ In future phases, `mockMetrics.js` can be replaced with an API query (`TanStack 
 ## 🗺️ Roadmap
 
 - [x] **Phase 01:** Application foundation, product shell, design system, and mock data layer.
-- [ ] **Phase 02:** Interactive analytics charts (Recharts), time-range filters, cohort tables.
+- [x] **Phase 02:** Interactive analytics charts (Recharts), reactive date-range filtering (7d/30d/90d/YTD), conversion funnels, and deep-dive Analytics page.
 - [ ] **Phase 03:** User and team management directory with RBAC permissions.
 - [ ] **Phase 04:** Workspace settings, API keys, audit logs, and billing controls.
 

@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
-import { Download, RefreshCw, ArrowUpRight, TrendingUp } from 'lucide-react';
+import { Download, RefreshCw, ArrowUpRight, TrendingUp, Calendar } from 'lucide-react';
 import {
-  dashboardKpiMetrics,
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip
+} from 'recharts';
+import {
   dateRangeOptions,
+  getDashboardKpiMetrics,
+  getDashboardRevenueSeries,
   mockRecentActivity
 } from '../data/mockMetrics';
 import {
@@ -16,24 +26,46 @@ import {
   CardDescription,
   CardContent,
   Avatar,
-  Badge
+  Badge,
+  Skeleton,
+  ChartTooltip
 } from '../components/ui';
+import { formatCurrency } from '../utils/formatters';
 
 export default function DashboardPage() {
   const [selectedRange, setSelectedRange] = useState('30d');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Simulate refresh to demonstrate UI loading state foundation
+  // Range-responsive data
+  const kpiMetrics = getDashboardKpiMetrics(selectedRange);
+  const revenueSeries = getDashboardRevenueSeries(selectedRange);
+
+  // Compute total revenue for the current view
+  const periodTotalRevenue = revenueSeries.reduce((acc, curr) => acc + curr.revenue, 0);
+
+  // Range display labels
+  const rangeLabels = {
+    '7d': 'Last 7 Days',
+    '30d': 'Last 30 Days',
+    '90d': 'Last 90 Days',
+    'ytd': 'Year to Date'
+  };
+
+  // Functional refresh interaction
   const handleRefresh = () => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-    }, 600);
+    }, 550);
+  };
+
+  const handleExport = () => {
+    alert(`Exporting ${rangeLabels[selectedRange]} report in CSV format (mock action)...`);
   };
 
   return (
     <div className="dashboard-page">
-      {/* Page Header with Controls */}
+      {/* Page Header with Functional Controls */}
       <PageHeader
         title="Overview"
         description="Monitor your business performance and key metrics."
@@ -59,7 +91,7 @@ export default function DashboardPage() {
               variant="primary"
               size="md"
               leftIcon={<Download size={15} />}
-              onClick={() => alert('Exporting dashboard report (mock action)...')}
+              onClick={handleExport}
             >
               Export Report
             </Button>
@@ -67,9 +99,9 @@ export default function DashboardPage() {
         }
       />
 
-      {/* KPI Cards Grid - Rendered dynamically from mock data */}
+      {/* KPI Cards Grid - Reacts dynamically to selectedRange */}
       <section className="kpi-grid" aria-label="Key Performance Indicators">
-        {dashboardKpiMetrics.map((metric) => (
+        {kpiMetrics.map((metric) => (
           <KpiCard
             key={metric.id}
             title={metric.title}
@@ -83,85 +115,112 @@ export default function DashboardPage() {
         ))}
       </section>
 
-      {/* Secondary Dashboard Content Sections */}
+      {/* Main Grid: Interactive Revenue Chart & Recent Activity */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
+          gridTemplateColumns: 'minmax(0, 1.8fr) minmax(0, 1.2fr)',
           gap: 'var(--space-5)',
           marginTop: 'var(--space-6)'
         }}
+        className="dashboard-content-grid"
       >
-        {/* Performance Overview Preview Card */}
-        <Card>
+        {/* Interactive Revenue Analytics Chart */}
+        <Card className="chart-card">
           <CardHeader>
             <div>
               <CardTitle>Revenue & Trajectory</CardTitle>
-              <CardDescription>Monthly recurring revenue compared against targets</CardDescription>
+              <CardDescription>
+                Gross revenue trajectory for {rangeLabels[selectedRange]}
+              </CardDescription>
             </div>
-            <Badge variant="success" icon={<TrendingUp size={12} />}>
-              +14.2% YoY
-            </Badge>
+            <div className="chart-header-actions">
+              <span className="chart-metric-badge">
+                {formatCurrency(periodTotalRevenue)} Total
+              </span>
+            </div>
           </CardHeader>
           <CardContent>
-            {/* SVG Visual Graphic Placeholder */}
-            <div
-              style={{
-                height: 200,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-end',
-                paddingTop: 16,
-                position: 'relative'
-              }}
-            >
-              <svg
-                viewBox="0 0 500 140"
-                style={{ width: '100%', height: '100%', overflow: 'visible' }}
-                preserveAspectRatio="none"
-              >
-                <defs>
-                  <linearGradient id="revenueGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#2563eb" stopOpacity="0.25" />
-                    <stop offset="100%" stopColor="#2563eb" stopOpacity="0.0" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,110 C80,95 120,70 180,75 C240,80 300,45 360,50 C420,55 460,20 500,25 L500,140 L0,140 Z"
-                  fill="url(#revenueGradient)"
-                />
-                <path
-                  d="M0,110 C80,95 120,70 180,75 C240,80 300,45 360,50 C420,55 460,20 500,25"
-                  fill="none"
-                  stroke="#2563eb"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                />
-                {/* Visual points */}
-                <circle cx="180" cy="75" r="4" fill="#ffffff" stroke="#2563eb" strokeWidth="2.5" />
-                <circle cx="360" cy="50" r="4" fill="#ffffff" stroke="#2563eb" strokeWidth="2.5" />
-                <circle cx="500" cy="25" r="4" fill="#ffffff" stroke="#2563eb" strokeWidth="2.5" />
-              </svg>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  paddingTop: 12,
-                  borderTop: '1px solid var(--border-subtle)',
-                  fontSize: 'var(--font-xs)',
-                  color: 'var(--text-muted)'
-                }}
-              >
-                <span>Week 1</span>
-                <span>Week 2</span>
-                <span>Week 3</span>
-                <span>Week 4</span>
+            {/* Custom Legend */}
+            <div className="chart-legend-custom">
+              <div className="chart-legend-item">
+                <span className="chart-legend-dot" style={{ backgroundColor: '#2563eb' }} />
+                <span>Actual Revenue</span>
+              </div>
+              <div className="chart-legend-item">
+                <span className="chart-legend-dot" style={{ backgroundColor: '#94a3b8' }} />
+                <span>Target Benchmark</span>
               </div>
             </div>
+
+            {isLoading ? (
+              <div style={{ height: 260, display: 'flex', flexDirection: 'column', gap: 12, justifyContent: 'center' }}>
+                <Skeleton width="100%" height="220px" borderRadius="var(--radius-md)" />
+              </div>
+            ) : (
+              <div className="chart-container" style={{ height: 260, width: '100%' }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart
+                    data={revenueSeries}
+                    margin={{ top: 10, right: 10, left: -15, bottom: 0 }}
+                  >
+                    <defs>
+                      <linearGradient id="revenueFill" x1="0" y1="0" x2="0" y2="100%">
+                        <stop offset="5%" stopColor="#2563eb" stopOpacity={0.35} />
+                        <stop offset="95%" stopColor="#2563eb" stopOpacity={0.0} />
+                      </linearGradient>
+                      <linearGradient id="targetFill" x1="0" y1="0" x2="0" y2="100%">
+                        <stop offset="5%" stopColor="#94a3b8" stopOpacity={0.15} />
+                        <stop offset="95%" stopColor="#94a3b8" stopOpacity={0.0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      vertical={false}
+                      stroke="var(--border-subtle)"
+                    />
+                    <XAxis
+                      dataKey="label"
+                      axisLine={false}
+                      tickLine={false}
+                      tick={{ fill: 'var(--text-muted)', fontSize: 12 }}
+                      dy={8}
+                    />
+                    <YAxis
+                      axisLine={false}
+                      tickLine={false}
+                      tick={{ fill: 'var(--text-muted)', fontSize: 12 }}
+                      tickFormatter={(val) => (val >= 1000 ? `$${val / 1000}k` : `$${val}`)}
+                    />
+                    <Tooltip content={<ChartTooltip isCurrency={true} />} />
+                    <Area
+                      type="monotone"
+                      dataKey="target"
+                      name="Target"
+                      stroke="#94a3b8"
+                      strokeWidth={1.5}
+                      strokeDasharray="4 4"
+                      fillOpacity={1}
+                      fill="url(#targetFill)"
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="revenue"
+                      name="Revenue"
+                      stroke="#2563eb"
+                      strokeWidth={2.5}
+                      fillOpacity={1}
+                      fill="url(#revenueFill)"
+                      activeDot={{ r: 6, fill: '#2563eb', stroke: '#ffffff', strokeWidth: 2 }}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            )}
           </CardContent>
         </Card>
 
-        {/* Recent Activity Card */}
+        {/* Enhanced Recent Activity Feed */}
         <Card>
           <CardHeader>
             <div>
@@ -172,50 +231,72 @@ export default function DashboardPage() {
               variant="ghost"
               size="sm"
               rightIcon={<ArrowUpRight size={13} />}
-              onClick={() => alert('Navigating to full audit log (Phase 02)...')}
+              onClick={() => alert('Full audit log will be accessible in Phase 03.')}
             >
               View all
             </Button>
           </CardHeader>
           <CardContent style={{ padding: '0 var(--space-5)' }}>
-            <ul style={{ listStyle: 'none' }}>
-              {mockRecentActivity.map((activity, idx) => (
-                <li
-                  key={activity.id}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: 'var(--space-3-5, 14px) 0',
-                    borderBottom:
-                      idx !== mockRecentActivity.length - 1
-                        ? '1px solid var(--border-subtle)'
-                        : 'none'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
-                    <Avatar src={activity.avatar} name={activity.user} size="sm" />
-                    <div>
-                      <div style={{ fontSize: 'var(--font-sm)', fontWeight: 500, color: 'var(--text-primary)' }}>
-                        {activity.user}{' '}
-                        <span style={{ fontWeight: 400, color: 'var(--text-secondary)' }}>
-                          {activity.action}
-                        </span>
-                      </div>
-                      <div style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)' }}>
-                        {activity.time}
-                      </div>
+            {isLoading ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '16px 0' }}>
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <Skeleton width="32px" height="32px" borderRadius="var(--radius-full)" />
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                      <Skeleton width="80%" height="14px" />
+                      <Skeleton width="40%" height="11px" />
                     </div>
                   </div>
-                  {activity.amount && (
-                    <Badge variant="success">{activity.amount}</Badge>
-                  )}
-                </li>
-              ))}
-            </ul>
+                ))}
+              </div>
+            ) : (
+              <ul style={{ listStyle: 'none' }}>
+                {mockRecentActivity.map((activity, idx) => (
+                  <li
+                    key={activity.id}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: 'var(--space-3-5, 14px) 0',
+                      borderBottom:
+                        idx !== mockRecentActivity.length - 1
+                          ? '1px solid var(--border-subtle)'
+                          : 'none'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+                      <Avatar src={activity.avatar} name={activity.user} size="sm" />
+                      <div>
+                        <div style={{ fontSize: 'var(--font-sm)', fontWeight: 500, color: 'var(--text-primary)' }}>
+                          {activity.user}{' '}
+                          <span style={{ fontWeight: 400, color: 'var(--text-secondary)' }}>
+                            {activity.action}
+                          </span>
+                        </div>
+                        <div style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)' }}>
+                          {activity.time}
+                        </div>
+                      </div>
+                    </div>
+                    {activity.amount && (
+                      <Badge variant="success">{activity.amount}</Badge>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
           </CardContent>
         </Card>
       </div>
+
+      <style>{`
+        @media (max-width: 960px) {
+          .dashboard-content-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

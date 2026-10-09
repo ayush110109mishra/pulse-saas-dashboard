@@ -521,3 +521,176 @@
   max-width: 420px;
   line-height: var(--leading-relaxed);
 }
+
+/* Charts and Data Visualizations */
+.chart-container {
+  width: 100%;
+  position: relative;
+}
+
+.chart-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.chart-metric-badge {
+  font-family: var(--font-display);
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary-600);
+  background-color: var(--primary-50);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--primary-100);
+}
+
+.chart-legend-custom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-4);
+  font-size: var(--font-xs);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+}
+
+/* Funnel Progression */
+.funnel-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.funnel-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.funnel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-sm);
+}
+
+.funnel-stage-name {
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.funnel-stage-metrics {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-xs);
+}
+
+.funnel-count {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.funnel-percentage {
+  color: var(--text-muted);
+}
+
+.funnel-track {
+  height: 8px;
+  background-color: var(--bg-surface-hover);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.funnel-bar {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--primary-500), #60a5fa);
+  transition: width var(--transition-normal);
+}
+
+/* Channel List */
+.channel-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.channel-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2-5) var(--space-3);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-fast);
+}
+
+.channel-item:hover {
+  background-color: var(--bg-surface-hover);
+  border-color: var(--border-default);
+}
+
+.channel-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2-5);
+}
+
+.channel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+}
+
+.channel-name {
+  font-size: var(--font-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.channel-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--font-sm);
+}
+
+.channel-revenue {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.channel-share {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  min-width: 36px;
+  text-align: right;
+}
+
+/* Recharts responsiveness reset */
+.recharts-responsive-container {
+  min-width: 0 !important;
+}
+
+.recharts-wrapper:focus {
+  outline: none;
+}
+

@@ -8,3 +8,4 @@ export { default as IconButton } from './IconButton';
 export { default as PageHeader } from './PageHeader';
 export { default as Skeleton } from './Skeleton';
 export { default as KpiCard } from './KpiCard';
+export { default as ChartTooltip } from './ChartTooltip';
