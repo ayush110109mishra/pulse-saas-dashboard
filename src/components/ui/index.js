@@ -9,3 +9,6 @@ export { default as PageHeader } from './PageHeader';
 export { default as Skeleton } from './Skeleton';
 export { default as KpiCard } from './KpiCard';
 export { default as ChartTooltip } from './ChartTooltip';
+export { default as Drawer } from './Drawer';
+export { default as Modal } from './Modal';
+export { default as NotificationPopover } from './NotificationPopover';

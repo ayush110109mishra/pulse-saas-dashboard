@@ -90,8 +90,8 @@ In future phases, `mockMetrics.js` can be replaced with an API query (`TanStack 
 
 - [x] **Phase 01:** Application foundation, product shell, design system, and mock data layer.
 - [x] **Phase 02:** Interactive analytics charts (Recharts), reactive date-range filtering (7d/30d/90d/YTD), conversion funnels, and deep-dive Analytics page.
-- [ ] **Phase 03:** User and team management directory with RBAC permissions.
-- [ ] **Phase 04:** Workspace settings, API keys, audit logs, and billing controls.
+- [x] **Phase 03:** User & team management table, live search/filtering, sorting, pagination, user detail drawer, live notification popover, and multi-tab settings with localStorage persistence.
+- [ ] **Phase 04:** Workspace production polish, API key management, audit logs, and billing workflows.
 
 ---
 

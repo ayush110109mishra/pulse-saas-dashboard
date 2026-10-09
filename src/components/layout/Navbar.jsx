@@ -7,9 +7,11 @@ import {
   ChevronDown
 } from 'lucide-react';
 import { currentUser } from '../../data/mockUser';
+import { useNotifications } from '../../context/NotificationContext';
 import Input from '../ui/Input';
 import IconButton from '../ui/IconButton';
 import Avatar from '../ui/Avatar';
+import NotificationPopover from '../ui/NotificationPopover';
 
 const routeTitles = {
   '/': 'Dashboard',
@@ -19,12 +21,15 @@ const routeTitles = {
 };
 
 /**
- * Top Navbar component
+ * Top Navbar component with live notification center
  */
 export default function Navbar({ onToggleMobileMenu }) {
   const location = useLocation();
   const currentTitle = routeTitles[location.pathname] || 'Pulse';
   const [searchQuery, setSearchQuery] = useState('');
+  const [isNotifOpen, setIsNotifOpen] = useState(false);
+
+  const { unreadCount } = useNotifications();
 
   return (
     <header className="app-navbar" role="banner">
@@ -55,13 +60,22 @@ export default function Navbar({ onToggleMobileMenu }) {
       </div>
 
       {/* Right: Actions, Notifications & Profile */}
-      <div className="navbar-right">
-        <IconButton
-          ariaLabel={`Notifications (${currentUser.notificationsCount} unread)`}
-          hasBadge={currentUser.notificationsCount > 0}
-        >
-          <Bell size={18} />
-        </IconButton>
+      <div className="navbar-right" style={{ position: 'relative' }}>
+        <div style={{ position: 'relative' }}>
+          <IconButton
+            ariaLabel={`Notifications (${unreadCount} unread)`}
+            hasBadge={unreadCount > 0}
+            onClick={() => setIsNotifOpen((prev) => !prev)}
+            aria-expanded={isNotifOpen}
+          >
+            <Bell size={18} />
+          </IconButton>
+
+          <NotificationPopover
+            isOpen={isNotifOpen}
+            onClose={() => setIsNotifOpen(false)}
+          />
+        </div>
 
         <div className="navbar-divider" aria-hidden="true" />
 
