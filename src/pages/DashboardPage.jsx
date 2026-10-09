@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Download, RefreshCw, ArrowUpRight, TrendingUp, Calendar } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -33,6 +34,7 @@ import {
 import { formatCurrency } from '../utils/formatters';
 
 export default function DashboardPage() {
+  const navigate = useNavigate();
   const [selectedRange, setSelectedRange] = useState('30d');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -231,7 +233,8 @@ export default function DashboardPage() {
               variant="ghost"
               size="sm"
               rightIcon={<ArrowUpRight size={13} />}
-              onClick={() => alert('Full audit log will be accessible in Phase 03.')}
+              onClick={() => navigate('/users')}
+              title="View all team activity and directory"
             >
               View all
             </Button>

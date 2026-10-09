@@ -31,6 +31,7 @@
   --primary-500: #2563eb;
   --primary-600: #1d4ed8;
   --primary-700: #1e40af;
+  --primary-text: #1d4ed8;
   --primary-glow: rgba(37, 99, 235, 0.15);
 
   /* Status Colors */
@@ -133,8 +134,8 @@
   --bg-sidebar-hover: #162032;
 
   --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8; /* Enhanced for 5.6:1 AA contrast on dark surfaces */
 
   --border-subtle: #1e293b;
   --border-default: #253349;
@@ -146,7 +147,21 @@
 
   --primary-50: #172554;
   --primary-100: #1e3a8a;
+  --primary-600: #60a5fa;
+  --primary-text: #93c5fd;
   --primary-glow: rgba(59, 130, 246, 0.25);
+
+  --success-50: rgba(22, 163, 74, 0.18);
+  --success-100: rgba(22, 163, 74, 0.35);
+  --success-text: #86efac;
+
+  --danger-50: rgba(220, 38, 38, 0.18);
+  --danger-100: rgba(220, 38, 38, 0.35);
+  --danger-text: #fca5a5;
+
+  --warning-50: rgba(217, 119, 6, 0.18);
+  --warning-100: rgba(217, 119, 6, 0.35);
+  --warning-text: #fde047;
 
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.5);

@@ -174,42 +174,41 @@ export const financialTrendsByRange = {
     { label: 'Sun', revenue: 2350, expenses: 1100, profit: 1250 }
   ],
   '30d': [
-    { label: 'Day 1', revenue: 2200, expenses: 1050, profit: 1150 },
-    { label: 'Day 4', revenue: 2500, expenses: 1120, profit: 1380 },
-    { label: 'Day 7', revenue: 2350, expenses: 1080, profit: 1270 },
-    { label: 'Day 10', revenue: 2800, expenses: 1240, profit: 1560 },
-    { label: 'Day 13', revenue: 3100, expenses: 1350, profit: 1750 },
-    { label: 'Day 16', revenue: 2950, expenses: 1290, profit: 1660 },
-    { label: 'Day 19', revenue: 3400, expenses: 1420, profit: 1980 },
-    { label: 'Day 22', revenue: 3300, expenses: 1390, profit: 1910 },
-    { label: 'Day 25', revenue: 3850, expenses: 1580, profit: 2270 },
-    { label: 'Day 28', revenue: 3600, expenses: 1510, profit: 2090 },
-    { label: 'Day 30', revenue: 4200, expenses: 1680, profit: 2520 }
+    { label: 'Day 3', revenue: 6800, expenses: 3100, profit: 3700 },
+    { label: 'Day 6', revenue: 7100, expenses: 3200, profit: 3900 },
+    { label: 'Day 9', revenue: 7450, expenses: 3350, profit: 4100 },
+    { label: 'Day 12', revenue: 7900, expenses: 3500, profit: 4400 },
+    { label: 'Day 15', revenue: 8200, expenses: 3650, profit: 4550 },
+    { label: 'Day 18', revenue: 8600, expenses: 3800, profit: 4800 },
+    { label: 'Day 21', revenue: 8900, expenses: 3950, profit: 4950 },
+    { label: 'Day 24', revenue: 9400, expenses: 4100, profit: 5300 },
+    { label: 'Day 27', revenue: 9800, expenses: 4300, profit: 5500 },
+    { label: 'Day 30', revenue: 10100, expenses: 4450, profit: 5650 }
   ],
   '90d': [
-    { label: 'W1', revenue: 16800, expenses: 7800, profit: 9000 },
-    { label: 'W2', revenue: 18200, expenses: 8100, profit: 10100 },
-    { label: 'W3', revenue: 17500, expenses: 8000, profit: 9500 },
-    { label: 'W4', revenue: 19800, expenses: 8700, profit: 11100 },
-    { label: 'W5', revenue: 21400, expenses: 9300, profit: 12100 },
-    { label: 'W6', revenue: 20600, expenses: 9100, profit: 11500 },
-    { label: 'W7', revenue: 23100, expenses: 9900, profit: 13200 },
-    { label: 'W8', revenue: 22800, expenses: 9800, profit: 13000 },
-    { label: 'W9', revenue: 25400, expenses: 10600, profit: 14800 },
-    { label: 'W10', revenue: 24900, expenses: 10400, profit: 14500 },
-    { label: 'W11', revenue: 27500, expenses: 11200, profit: 16300 },
-    { label: 'W12', revenue: 29200, expenses: 11800, profit: 17400 }
+    { label: 'W1', revenue: 16200, expenses: 7400, profit: 8800 },
+    { label: 'W2', revenue: 17100, expenses: 7700, profit: 9400 },
+    { label: 'W3', revenue: 17800, expenses: 8000, profit: 9800 },
+    { label: 'W4', revenue: 18600, expenses: 8300, profit: 10300 },
+    { label: 'W5', revenue: 19500, expenses: 8600, profit: 10900 },
+    { label: 'W6', revenue: 20400, expenses: 9000, profit: 11400 },
+    { label: 'W7', revenue: 21200, expenses: 9300, profit: 11900 },
+    { label: 'W8', revenue: 22100, expenses: 9700, profit: 12400 },
+    { label: 'W9', revenue: 22900, expenses: 10000, profit: 12900 },
+    { label: 'W10', revenue: 23600, expenses: 10300, profit: 13300 },
+    { label: 'W11', revenue: 24200, expenses: 10500, profit: 13700 },
+    { label: 'W12', revenue: 25000, expenses: 10800, profit: 14200 }
   ],
   'ytd': [
-    { label: 'Jan', revenue: 58000, expenses: 26000, profit: 32000 },
-    { label: 'Feb', revenue: 64000, expenses: 28000, profit: 36000 },
-    { label: 'Mar', revenue: 69000, expenses: 30000, profit: 39000 },
-    { label: 'Apr', revenue: 73000, expenses: 31500, profit: 41500 },
-    { label: 'May', revenue: 78000, expenses: 33000, profit: 45000 },
-    { label: 'Jun', revenue: 84000, expenses: 35000, profit: 49000 },
-    { label: 'Jul', revenue: 89000, expenses: 37000, profit: 52000 },
-    { label: 'Aug', revenue: 95000, expenses: 39000, profit: 56000 },
-    { label: 'Sep', revenue: 101000, expenses: 41000, profit: 60000 }
+    { label: 'Jan', revenue: 56000, expenses: 25000, profit: 31000 },
+    { label: 'Feb', revenue: 61000, expenses: 27000, profit: 34000 },
+    { label: 'Mar', revenue: 66000, expenses: 29000, profit: 37000 },
+    { label: 'Apr', revenue: 71000, expenses: 31000, profit: 40000 },
+    { label: 'May', revenue: 76000, expenses: 33000, profit: 43000 },
+    { label: 'Jun', revenue: 81000, expenses: 35000, profit: 46000 },
+    { label: 'Jul', revenue: 86000, expenses: 37000, profit: 49000 },
+    { label: 'Aug', revenue: 91000, expenses: 39000, profit: 52000 },
+    { label: 'Sep', revenue: 94000, expenses: 40000, profit: 54000 }
   ]
 };
 

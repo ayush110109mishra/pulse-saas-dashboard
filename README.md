@@ -3,7 +3,7 @@
 [![React 18](https://img.shields.io/badge/React-18.3.1-61DAFB?style=flat-square&logo=react)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-6.0.1-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
 [![React Router](https://img.shields.io/badge/React_Router-v6.28.0-CA4245?style=flat-square&logo=react-router)](https://reactrouter.com/)
-[![Tests](https://img.shields.io/badge/Tests-30%20Passed-10b981?style=flat-square)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-34%20Passed-10b981?style=flat-square)](tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 
 **Pulse** is a responsive, production-ready SaaS analytics dashboard engineered with React 18, modern CSS3 design tokens, Recharts, and Vite. Designed as a real-world enterprise product foundation, Pulse features interactive financial trajectories, conversion funnels, user management with client-side CRUD capabilities, notification workflows, and live theme/density personalization.
@@ -41,22 +41,21 @@ The application adheres to clean architectural boundaries: presentation is compl
   - Quick actions: Mark individual notification as read or bulk "Mark all read".
 - **Multi-Tab Settings (`/settings`):**
   - **Profile:** Editable user details and avatar updates.
-  - **Appearance:** Live theme switcher (Light / Dark mode) and table display density (Standard / Compact).
+  - **Appearance:** Live theme switcher (Light / Dark / System mode) and table display density (Standard / Compact).
   - **Notifications:** Granular email, product, and weekly summary toggle switches.
   - **Team:** Workspace member roster preview and role governance.
   - **LocalStorage Persistence:** Form submissions and preference changes automatically persist across browser reloads.
 
-### 🛡️ Phase 04: Production Polish, QA & Optimization
+### 🛡️ Phase 04 & UI Enhancement Pass: Production Polish & Accessibility
+- **Complete Theme Switching:**
+  - One-click Sun/Moon toggle in top navbar across all routes.
+  - Light, Dark, and System modes in Settings → Appearance with real-time OS preference sync (`prefers-color-scheme`).
+  - WCAG AA compliant dark mode palette across all charts, tooltips, tables, selects, and status badges.
+- **Dashboard Data Parity:** 100% mathematical reconciliation between KPI cards, chart header summaries, and multi-range series.
 - **Vite Rollup Optimization:** Custom chunk splitting (`vendor`, `charts`, `icons`) ensuring all output chunks remain strictly under 500 kB.
-- **Accessibility & WCAG AA Compliance:**
-  - Contrast ratios fortified across all muted text tokens (`#64748b` on light, `#94a3b8` on dark).
-  - Keyboard focus rings (`:focus-visible`) across all interactive buttons, inputs, links, and dropdowns.
-  - Global `Cmd+K` / `Ctrl+K` search focus shortcut.
-  - Keyboard `Escape` key dismissal for both notification popover and user drawer.
-  - Accessible `prefers-reduced-motion` media queries disabling animations for sensitive users.
+- **Accessibility:** Global `Cmd+K` / `Ctrl+K` search focus, `Escape` key dismissal for popovers and drawers, `:focus-visible` rings, and `prefers-reduced-motion` support.
 - **SPA Fallback Routing:** Zero-config routing fallbacks configured for production hosting via `vercel.json` and `public/_redirects`.
-- **Defensive Engineering:** Null-safe data bindings, fallback arrays, and numeric sanitization in formatting utilities.
-- **Native Test Suite:** 30 automated unit tests utilizing Node 24 native test runner (`node --test`), requiring zero external testing bloat.
+- **Native Test Suite:** 34 automated unit tests utilizing Node 24 native test runner (`node --test`), covering formatters, data contracts, and theme logic.
 
 ---
 

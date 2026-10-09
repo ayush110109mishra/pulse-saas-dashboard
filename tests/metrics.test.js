@@ -35,14 +35,27 @@ test('mockMetrics data layer', async (t) => {
     });
   });
 
-  await t.test('getDashboardRevenueSeries returns valid chart series', () => {
-    const series = getDashboardRevenueSeries('30d');
-    assert.ok(Array.isArray(series));
-    assert.ok(series.length > 0);
-    series.forEach((pt) => {
-      assert.ok(pt.label, 'Data point must have a label');
-      assert.equal(typeof pt.revenue, 'number', 'Revenue must be numeric');
-      assert.equal(typeof pt.target, 'number', 'Target must be numeric');
+  await t.test('getDashboardRevenueSeries returns valid chart series and matches KPI totals exactly', () => {
+    ['7d', '30d', '90d', 'ytd'].forEach((range) => {
+      const series = getDashboardRevenueSeries(range);
+      const metrics = getDashboardKpiMetrics(range);
+      const revMetric = metrics.find((m) => m.id === 'total-revenue');
+      const orderMetric = metrics.find((m) => m.id === 'total-orders');
+
+      assert.ok(Array.isArray(series));
+      assert.ok(series.length > 0);
+
+      const sumRevenue = series.reduce((acc, curr) => acc + curr.revenue, 0);
+      const sumOrders = series.reduce((acc, curr) => acc + curr.orders, 0);
+
+      assert.equal(sumRevenue, revMetric.numericValue, `Series revenue sum should equal KPI total revenue for ${range}`);
+      assert.equal(sumOrders, orderMetric.numericValue, `Series orders sum should equal KPI total orders for ${range}`);
+
+      series.forEach((pt) => {
+        assert.ok(pt.label, 'Data point must have a label');
+        assert.equal(typeof pt.revenue, 'number', 'Revenue must be numeric');
+        assert.equal(typeof pt.target, 'number', 'Target must be numeric');
+      });
     });
   });
 
@@ -68,14 +81,23 @@ test('mockAnalytics data layer', async (t) => {
     });
   });
 
-  await t.test('getFinancialTrends returns revenue, expenses, and profit', () => {
-    const trends = getFinancialTrends('30d');
-    assert.ok(Array.isArray(trends));
-    trends.forEach((item) => {
-      assert.ok(item.label);
-      assert.equal(typeof item.revenue, 'number');
-      assert.equal(typeof item.expenses, 'number');
-      assert.equal(typeof item.profit, 'number');
+  await t.test('getFinancialTrends returns revenue, expenses, and profit matching KPI totals', () => {
+    ['7d', '30d', '90d', 'ytd'].forEach((range) => {
+      const trends = getFinancialTrends(range);
+      const metrics = getDashboardKpiMetrics(range);
+      const revMetric = metrics.find((m) => m.id === 'total-revenue');
+
+      assert.ok(Array.isArray(trends));
+      const totalRev = trends.reduce((acc, curr) => acc + curr.revenue, 0);
+      assert.equal(totalRev, revMetric.numericValue, `Financial trends revenue sum should equal KPI total revenue for ${range}`);
+
+      trends.forEach((item) => {
+        assert.ok(item.label);
+        assert.equal(typeof item.revenue, 'number');
+        assert.equal(typeof item.expenses, 'number');
+        assert.equal(typeof item.profit, 'number');
+        assert.equal(item.profit, item.revenue - item.expenses, 'Profit must equal revenue minus expenses');
+      });
     });
   });
 
@@ -100,14 +122,22 @@ test('mockAnalytics data layer', async (t) => {
     });
   });
 
-  await t.test('getAcquisitionChannels returns 5 acquisition channels', () => {
-    const channels = getAcquisitionChannels('30d');
-    assert.equal(channels.length, 5);
-    channels.forEach((c) => {
-      assert.ok(c.name);
-      assert.equal(typeof c.share, 'number');
-      assert.equal(typeof c.revenue, 'number');
-      assert.ok(c.color);
+  await t.test('getAcquisitionChannels returns 5 channels matching KPI total revenue', () => {
+    ['7d', '30d', '90d', 'ytd'].forEach((range) => {
+      const channels = getAcquisitionChannels(range);
+      const metrics = getDashboardKpiMetrics(range);
+      const revMetric = metrics.find((m) => m.id === 'total-revenue');
+
+      assert.equal(channels.length, 5);
+      const totalRev = channels.reduce((acc, curr) => acc + curr.revenue, 0);
+      assert.equal(totalRev, revMetric.numericValue, `Channel revenue sum should equal KPI total revenue for ${range}`);
+
+      channels.forEach((c) => {
+        assert.ok(c.name);
+        assert.equal(typeof c.share, 'number');
+        assert.equal(typeof c.revenue, 'number');
+        assert.ok(c.color);
+      });
     });
   });
 });

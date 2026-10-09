@@ -207,7 +207,7 @@
 
 .badge-primary {
   background-color: var(--primary-50);
-  color: var(--primary-600);
+  color: var(--primary-text, var(--primary-600));
   border: 1px solid var(--primary-100);
 }
 
@@ -306,6 +306,11 @@
   background-color: var(--bg-surface-hover);
 }
 
+.select-field option {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+
 .select-field:focus {
   outline: none;
   border-color: var(--border-focus);
@@ -386,6 +391,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
 /* KPI Card Grid & Component */
@@ -538,11 +544,48 @@
   font-family: var(--font-display);
   font-size: var(--font-sm);
   font-weight: var(--font-weight-semibold);
-  color: var(--primary-600);
+  color: var(--primary-text, var(--primary-600));
   background-color: var(--primary-50);
   padding: 4px 10px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--primary-100);
+}
+
+/* Theme Picker Buttons in Settings */
+.theme-picker-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  background-color: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: var(--font-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.theme-picker-btn:hover {
+  background-color: var(--bg-surface-hover);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.theme-picker-btn:focus-visible {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+.theme-picker-btn.active {
+  border-color: var(--primary-500);
+  background-color: var(--primary-50);
+  color: var(--primary-text, var(--primary-600));
+  box-shadow: 0 0 0 1px var(--primary-500);
 }
 
 .chart-legend-custom {
@@ -1007,7 +1050,7 @@
   font-size: 11px;
   font-weight: var(--font-weight-semibold);
   background-color: var(--primary-50);
-  color: var(--primary-600);
+  color: var(--primary-text, var(--primary-600));
   padding: 2px 7px;
   border-radius: var(--radius-full);
 }
@@ -1017,7 +1060,7 @@
   align-items: center;
   gap: 4px;
   font-size: var(--font-xs);
-  color: var(--primary-600);
+  color: var(--primary-text, var(--primary-600));
   cursor: pointer;
   background: none;
   border: none;
@@ -1051,7 +1094,7 @@
 }
 
 .notif-item.unread {
-  background-color: #f8faff;
+  background-color: var(--primary-50);
 }
 
 .notif-item:last-child {
@@ -1087,6 +1130,26 @@
 .notif-icon-security {
   background-color: #fff7ed;
   color: #ea580c;
+}
+
+:root[data-theme="dark"] .notif-icon-billing {
+  background-color: rgba(5, 150, 105, 0.2);
+  color: #34d399;
+}
+
+:root[data-theme="dark"] .notif-icon-system {
+  background-color: rgba(37, 99, 235, 0.2);
+  color: #60a5fa;
+}
+
+:root[data-theme="dark"] .notif-icon-team {
+  background-color: rgba(219, 39, 119, 0.2);
+  color: #f472b6;
+}
+
+:root[data-theme="dark"] .notif-icon-security {
+  background-color: rgba(234, 88, 12, 0.2);
+  color: #fb923c;
 }
 
 .notif-content {

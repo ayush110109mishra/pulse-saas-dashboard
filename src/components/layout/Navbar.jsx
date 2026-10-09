@@ -4,10 +4,13 @@ import {
   Menu,
   Search,
   Bell,
-  ChevronDown
+  ChevronDown,
+  Sun,
+  Moon
 } from 'lucide-react';
 import { currentUser } from '../../data/mockUser';
 import { useNotifications } from '../../context/NotificationContext';
+import { useTheme } from '../../context/ThemeContext';
 import Input from '../ui/Input';
 import IconButton from '../ui/IconButton';
 import Avatar from '../ui/Avatar';
@@ -31,6 +34,7 @@ export default function Navbar({ onToggleMobileMenu }) {
   const searchInputRef = useRef(null);
 
   const { unreadCount } = useNotifications();
+  const { resolvedTheme, toggleTheme } = useTheme();
 
   // Global Cmd+K / Ctrl+K keyboard shortcut to focus search
   useEffect(() => {
@@ -77,6 +81,15 @@ export default function Navbar({ onToggleMobileMenu }) {
 
       {/* Right: Actions, Notifications & Profile */}
       <div className="navbar-right" style={{ position: 'relative' }}>
+        {/* Theme Toggle */}
+        <IconButton
+          ariaLabel={resolvedTheme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+          onClick={toggleTheme}
+          title={resolvedTheme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+        >
+          {resolvedTheme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+        </IconButton>
+
         <div style={{ position: 'relative' }}>
           <IconButton
             ariaLabel={`Notifications (${unreadCount} unread)`}

@@ -7,8 +7,12 @@ import {
   Save,
   RotateCcw,
   CheckCircle2,
-  Info
+  Info,
+  Sun,
+  Moon,
+  Laptop
 } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 import {
   PageHeader,
   Button,
@@ -63,28 +67,21 @@ export default function SettingsPage() {
   });
 
   const [feedbackMsg, setFeedbackMsg] = useState('');
+  const { theme, setTheme } = useTheme();
 
-  // Apply theme and density preferences directly to documentElement
+  // Keep settings.theme in sync with global theme
   useEffect(() => {
-    if (settings.theme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else if (settings.theme === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-    } else {
-      const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (isDark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-      }
-    }
+    setSettings((prev) => (prev.theme !== theme ? { ...prev, theme } : prev));
+  }, [theme]);
 
+  // Apply density preferences directly to documentElement
+  useEffect(() => {
     if (settings.compactTables) {
       document.documentElement.setAttribute('data-density', 'compact');
     } else {
       document.documentElement.removeAttribute('data-density');
     }
-  }, [settings.theme, settings.compactTables]);
+  }, [settings.compactTables]);
 
   const tabs = [
     { id: 'general', label: 'General', icon: Sliders },
@@ -98,6 +95,11 @@ export default function SettingsPage() {
       ...prev,
       [field]: value
     }));
+  };
+
+  const handleThemeChange = (newTheme) => {
+    handleFieldChange('theme', newTheme);
+    setTheme(newTheme);
   };
 
   const handleSave = (e) => {
@@ -115,7 +117,7 @@ export default function SettingsPage() {
     if (window.confirm('Reset all preferences back to default settings?')) {
       setSettings(defaultSettings);
       localStorage.removeItem(STORAGE_KEY);
-      document.documentElement.removeAttribute('data-theme');
+      setTheme('system');
       document.documentElement.removeAttribute('data-density');
       setFeedbackMsg('Preferences reset to default values.');
       setTimeout(() => setFeedbackMsg(''), 4000);
@@ -290,16 +292,67 @@ export default function SettingsPage() {
               <div style={{ maxWidth: '640px' }}>
                 <div className="form-row">
                   <label className="form-label">Interface Theme</label>
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(3, 1fr)',
+                      gap: 'var(--space-3)',
+                      marginBottom: 'var(--space-3)'
+                    }}
+                    role="radiogroup"
+                    aria-label="Interface theme selection"
+                  >
+                    <button
+                      type="button"
+                      className={`theme-picker-btn ${settings.theme === 'light' ? 'active' : ''}`}
+                      onClick={() => handleThemeChange('light')}
+                      role="radio"
+                      aria-checked={settings.theme === 'light'}
+                      aria-label="Clean Slate Light Theme"
+                    >
+                      <Sun size={18} />
+                      <span style={{ fontWeight: 600 }}>Light</span>
+                      <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Clean Slate</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={`theme-picker-btn ${settings.theme === 'dark' ? 'active' : ''}`}
+                      onClick={() => handleThemeChange('dark')}
+                      role="radio"
+                      aria-checked={settings.theme === 'dark'}
+                      aria-label="Dark Mode Theme"
+                    >
+                      <Moon size={18} />
+                      <span style={{ fontWeight: 600 }}>Dark</span>
+                      <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>High Contrast</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={`theme-picker-btn ${settings.theme === 'system' ? 'active' : ''}`}
+                      onClick={() => handleThemeChange('system')}
+                      role="radio"
+                      aria-checked={settings.theme === 'system'}
+                      aria-label="System Default Theme"
+                    >
+                      <Laptop size={18} />
+                      <span style={{ fontWeight: 600 }}>System</span>
+                      <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Match OS</span>
+                    </button>
+                  </div>
+
                   <Select
                     options={[
-                      { value: 'system', label: 'System Default' },
-                      { value: 'light', label: 'Clean Slate Light' },
-                      { value: 'dark', label: 'Dark Mode (Preview)' }
+                      { value: 'system', label: 'System Default (Matches Operating System)' },
+                      { value: 'light', label: 'Clean Slate Light Mode' },
+                      { value: 'dark', label: 'High Contrast Dark Mode' }
                     ]}
                     value={settings.theme}
-                    onChange={(e) => handleFieldChange('theme', e.target.value)}
+                    onChange={(e) => handleThemeChange(e.target.value)}
+                    aria-label="Select interface theme"
                   />
-                  <span className="form-hint">Adjust the primary color palette for charts and components.</span>
+                  <span className="form-hint">
+                    Choose between clean light mode, high-contrast dark mode, or dynamic sync with your OS preferences.
+                  </span>
                 </div>
 
                 <div className="switch-container">

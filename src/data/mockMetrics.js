@@ -215,42 +215,41 @@ export const dashboardRevenueSeriesByRange = {
     { label: 'Sun', revenue: 2350, target: 2200, orders: 107 }
   ],
   '30d': [
-    { label: 'Day 1', revenue: 2200, target: 2000, orders: 98 },
-    { label: 'Day 4', revenue: 2500, target: 2200, orders: 112 },
-    { label: 'Day 7', revenue: 2350, target: 2200, orders: 105 },
-    { label: 'Day 10', revenue: 2800, target: 2400, orders: 126 },
-    { label: 'Day 13', revenue: 3100, target: 2500, orders: 140 },
-    { label: 'Day 16', revenue: 2950, target: 2600, orders: 132 },
-    { label: 'Day 19', revenue: 3400, target: 2800, orders: 154 },
-    { label: 'Day 22', revenue: 3300, target: 2900, orders: 148 },
-    { label: 'Day 25', revenue: 3850, target: 3100, orders: 172 },
-    { label: 'Day 28', revenue: 3600, target: 3200, orders: 165 },
-    { label: 'Day 30', revenue: 4200, target: 3400, orders: 188 }
+    { label: 'Day 3', revenue: 6800, target: 6200, orders: 310 },
+    { label: 'Day 6', revenue: 7100, target: 6500, orders: 325 },
+    { label: 'Day 9', revenue: 7450, target: 6800, orders: 340 },
+    { label: 'Day 12', revenue: 7900, target: 7100, orders: 360 },
+    { label: 'Day 15', revenue: 8200, target: 7400, orders: 375 },
+    { label: 'Day 18', revenue: 8600, target: 7800, orders: 390 },
+    { label: 'Day 21', revenue: 8900, target: 8100, orders: 405 },
+    { label: 'Day 24', revenue: 9400, target: 8500, orders: 430 },
+    { label: 'Day 27', revenue: 9800, target: 8900, orders: 445 },
+    { label: 'Day 30', revenue: 10100, target: 9200, orders: 460 }
   ],
   '90d': [
-    { label: 'Week 1', revenue: 16800, target: 15000, orders: 760 },
-    { label: 'Week 2', revenue: 18200, target: 16000, orders: 820 },
-    { label: 'Week 3', revenue: 17500, target: 16500, orders: 790 },
-    { label: 'Week 4', revenue: 19800, target: 17500, orders: 890 },
-    { label: 'Week 5', revenue: 21400, target: 18500, orders: 960 },
-    { label: 'Week 6', revenue: 20600, target: 19000, orders: 930 },
-    { label: 'Week 7', revenue: 23100, target: 20000, orders: 1040 },
-    { label: 'Week 8', revenue: 22800, target: 20500, orders: 1020 },
-    { label: 'Week 9', revenue: 25400, target: 21500, orders: 1150 },
-    { label: 'Week 10', revenue: 24900, target: 22000, orders: 1120 },
-    { label: 'Week 11', revenue: 27500, target: 23500, orders: 1240 },
-    { label: 'Week 12', revenue: 29200, target: 24500, orders: 1310 }
+    { label: 'Week 1', revenue: 16200, target: 15000, orders: 740 },
+    { label: 'Week 2', revenue: 17100, target: 15500, orders: 780 },
+    { label: 'Week 3', revenue: 17800, target: 16000, orders: 810 },
+    { label: 'Week 4', revenue: 18600, target: 17000, orders: 840 },
+    { label: 'Week 5', revenue: 19500, target: 17500, orders: 880 },
+    { label: 'Week 6', revenue: 20400, target: 18500, orders: 920 },
+    { label: 'Week 7', revenue: 21200, target: 19000, orders: 960 },
+    { label: 'Week 8', revenue: 22100, target: 20000, orders: 1000 },
+    { label: 'Week 9', revenue: 22900, target: 20500, orders: 1030 },
+    { label: 'Week 10', revenue: 23600, target: 21000, orders: 1060 },
+    { label: 'Week 11', revenue: 24200, target: 22000, orders: 1080 },
+    { label: 'Week 12', revenue: 25000, target: 22500, orders: 1100 }
   ],
   'ytd': [
-    { label: 'Jan', revenue: 58000, target: 50000, orders: 2600 },
-    { label: 'Feb', revenue: 64000, target: 55000, orders: 2900 },
-    { label: 'Mar', revenue: 69000, target: 60000, orders: 3100 },
-    { label: 'Apr', revenue: 73000, target: 65000, orders: 3300 },
-    { label: 'May', revenue: 78000, target: 70000, orders: 3550 },
-    { label: 'Jun', revenue: 84000, target: 75000, orders: 3820 },
-    { label: 'Jul', revenue: 89000, target: 80000, orders: 4050 },
-    { label: 'Aug', revenue: 95000, target: 85000, orders: 4320 },
-    { label: 'Sep', revenue: 101000, target: 90000, orders: 4600 }
+    { label: 'Jan', revenue: 56000, target: 50000, orders: 2600 },
+    { label: 'Feb', revenue: 61000, target: 54000, orders: 2850 },
+    { label: 'Mar', revenue: 66000, target: 59000, orders: 3050 },
+    { label: 'Apr', revenue: 71000, target: 64000, orders: 3280 },
+    { label: 'May', revenue: 76000, target: 68000, orders: 3520 },
+    { label: 'Jun', revenue: 81000, target: 73000, orders: 3750 },
+    { label: 'Jul', revenue: 86000, target: 78000, orders: 3980 },
+    { label: 'Aug', revenue: 91000, target: 82000, orders: 4180 },
+    { label: 'Sep', revenue: 94000, target: 86000, orders: 4240 }
   ]
 };
 
