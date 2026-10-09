@@ -15,6 +15,8 @@ import Input from '../ui/Input';
 import IconButton from '../ui/IconButton';
 import Avatar from '../ui/Avatar';
 import NotificationPopover from '../ui/NotificationPopover';
+import ProfileDropdown from './ProfileDropdown';
+import ProfileModal from './ProfileModal';
 
 const routeTitles = {
   '/': 'Dashboard',
@@ -24,14 +26,17 @@ const routeTitles = {
 };
 
 /**
- * Top Navbar component with live notification center and keyboard shortcuts
+ * Top Navbar component with live notification center, profile dropdown, and keyboard shortcuts
  */
 export default function Navbar({ onToggleMobileMenu }) {
   const location = useLocation();
   const currentTitle = routeTitles[location.pathname] || 'Pulse';
   const [searchQuery, setSearchQuery] = useState('');
   const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const searchInputRef = useRef(null);
+  const profileTriggerRef = useRef(null);
 
   const { unreadCount } = useNotifications();
   const { resolvedTheme, toggleTheme } = useTheme();
@@ -94,7 +99,10 @@ export default function Navbar({ onToggleMobileMenu }) {
           <IconButton
             ariaLabel={`Notifications (${unreadCount} unread)`}
             hasBadge={unreadCount > 0}
-            onClick={() => setIsNotifOpen((prev) => !prev)}
+            onClick={() => {
+              setIsNotifOpen((prev) => !prev);
+              setIsProfileOpen(false);
+            }}
             aria-expanded={isNotifOpen}
           >
             <Bell size={18} />
@@ -108,33 +116,61 @@ export default function Navbar({ onToggleMobileMenu }) {
 
         <div className="navbar-divider" aria-hidden="true" />
 
-        {/* User Profile Trigger */}
-        <div
-          className="user-profile-trigger"
-          tabIndex={0}
-          role="button"
-          aria-label={`User profile: ${currentUser.name}`}
-          aria-haspopup="menu"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              alert(`Logged in as ${currentUser.name} (${currentUser.role})`);
-            }
-          }}
-        >
-          <Avatar
-            src={currentUser.avatarUrl}
-            name={currentUser.name}
-            size="sm"
-            showStatus
+        {/* User Profile Trigger & Dropdown Menu */}
+        <div className="user-profile-wrapper" style={{ position: 'relative' }}>
+          <button
+            ref={profileTriggerRef}
+            type="button"
+            className="user-profile-trigger"
+            aria-label={`User menu for ${currentUser.name}`}
+            aria-haspopup="menu"
+            aria-expanded={isProfileOpen}
+            aria-controls="profile-dropdown-menu"
+            onClick={() => {
+              setIsProfileOpen((prev) => !prev);
+              setIsNotifOpen(false);
+            }}
+            onKeyDown={(e) => {
+              if ((e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') && !isProfileOpen) {
+                e.preventDefault();
+                setIsProfileOpen(true);
+                setIsNotifOpen(false);
+              }
+            }}
+          >
+            <Avatar
+              src={currentUser.avatarUrl}
+              name={currentUser.name}
+              size="sm"
+              showStatus
+            />
+            <div className="user-profile-info">
+              <span className="user-profile-name">{currentUser.name}</span>
+              <span className="user-profile-role">{currentUser.role}</span>
+            </div>
+            <ChevronDown
+              size={14}
+              className={`user-profile-chevron ${isProfileOpen ? 'open' : ''}`}
+              aria-hidden="true"
+            />
+          </button>
+
+          <ProfileDropdown
+            isOpen={isProfileOpen}
+            onClose={() => setIsProfileOpen(false)}
+            onOpenProfile={() => setIsProfileModalOpen(true)}
+            triggerRef={profileTriggerRef}
+            user={currentUser}
           />
-          <div className="user-profile-info">
-            <span className="user-profile-name">{currentUser.name}</span>
-            <span className="user-profile-role">{currentUser.role}</span>
-          </div>
-          <ChevronDown size={14} style={{ color: 'var(--text-muted)' }} />
         </div>
       </div>
+
+      {/* User Profile Details Modal */}
+      <ProfileModal
+        isOpen={isProfileModalOpen}
+        onClose={() => setIsProfileModalOpen(false)}
+        user={currentUser}
+      />
     </header>
   );
 }
